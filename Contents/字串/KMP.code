@@ -1,0 +1,23 @@
+vector<int> kmp(string s,string t){
+    if(t.size()>s.size()) return {};
+    vector<int> pi(t.size(),0);
+    for(int i=1,j=0;i<t.size();i++){
+        while(j>0 && t[j]!=t[i]){
+            j=pi[j-1];
+        }
+        if(t[j]==t[i]) j++;
+        pi[i]=j;
+    }
+    vector<int> ans;
+    for(int i=0,j=0;i<s.size();i++){
+        while(j>0 && t[j]!=s[i]){
+            j=pi[j-1];
+        }
+        if(t[j]==s[i]) j++;
+        
+        if(j==t.size()){
+            ans.push_back(i-j+1);
+            j=pi[j-1];
+    }}
+    return ans;
+}
