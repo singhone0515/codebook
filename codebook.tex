@@ -37,20 +37,24 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\setmainfont[
-    AutoFakeSlant,
-    BoldFont={Consolas Bold},
-    ItalicFont={Consolas Italic},
-    BoldItalicFont={Consolas Bold Italic}
-]{Consolas}
+\setmainfont [				%主要字型
+    Path = .fonts/ttf/,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic
+  ] {Consolas}
 
-\setmonofont[
-    AutoFakeSlant,
-    BoldFont={Consolas Bold},
-    ItalicFont={Consolas Italic},
-    BoldItalicFont={Consolas Bold Italic}
-]{Consolas}
-\setCJKmainfont{Noto Sans CJK TC}
+\setmonofont [        
+    Path = .fonts/ttf/,
+    UprightFont = *-Regular
+  ] {Monaco}
+
+\setCJKmainfont[
+  Path = .fonts/ttf/,        % 你放字型檔的資料夾（相對於主 .tex 檔案）
+  Extension = .ttf,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+]{NotoSansTC}
 \XeTeXlinebreaklocale "zh"                      %中文自動換行
 \XeTeXlinebreakskip = 0pt plus 1pt              %設定段落之間的距離
 \setcounter{secnumdepth}{3}                     %目錄顯示第三層
