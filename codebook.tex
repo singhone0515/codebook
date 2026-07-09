@@ -103,13 +103,13 @@
   \vspace{-1.2em}
 }
 \newcommand{\gridpage}{
-    \onecolumn
+    \clearpage
     \centering
-    \begin{tikzpicture}[every node/.style={minimum size=1cm-\pgflinewidth, outer sep=10pt}, scale=2]
-    \draw[step=0.2cm,color=gray] (0,0) grid (10,14);
-    \draw[step=1cm,color=black,line width=0.4mm] (0,0) grid (10,14);
+    \begin{tikzpicture}[every node/.style={minimum size=1cm-\pgflinewidth, outer sep=10pt}, scale=2.2]
+    \draw[step=0.2cm,color=gray] (0,0) grid (8,10);
+    \draw[step=1cm,color=black,line width=0.4mm] (0,0) grid (8,10);
     \end{tikzpicture}
-    \twocolumn
+    \newpage
 }
 
 \scriptsize
