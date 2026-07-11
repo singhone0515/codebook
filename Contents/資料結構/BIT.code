@@ -1,0 +1,23 @@
+struct Binary_Indexed_Tree{
+    int n;
+    vector<int> bit;
+    void init(int _n){
+        n=_n+1;
+        bit=vector<int>(n,0);
+    }
+    int lowbit(int x) return x&-x;
+    void update(int x,int v){
+        for(;x<n;x+=lowbit(x)){
+            bit[x]+=v;
+    }}
+    void range_update(int l,int r,int v){
+        update(l,v);
+        update(r+1,-v);
+    }
+    int qry(int x){
+        int ans=0;
+        for(;x>0;x-=lowbit(x)){
+            ans+=bit[x];
+        }
+        return ans;
+}};
