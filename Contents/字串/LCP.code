@@ -1,0 +1,6 @@
+int lcp(const string &pa,const string &pb){
+    int i=0;
+    while(1<pa.size() && i<pb.size() && pa[i]==pb[i])
+        i++;
+    return i;
+}

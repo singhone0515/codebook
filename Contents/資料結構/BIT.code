@@ -5,7 +5,7 @@ struct Binary_Indexed_Tree{
         n=_n+1;
         bit=vector<int>(n,0);
     }
-    int lowbit(int x) return x&-x;
+    int lowbit(int x){return x&-x;}
     void update(int x,int v){
         for(;x<n;x+=lowbit(x)){
             bit[x]+=v;
