@@ -1,4 +1,4 @@
-struct Binary_Indexed_Tree{
+struct Binary_Indexed_Tree{//一定要用 1-base
     int n;
     vector<int> bit;
     void init(int _n){

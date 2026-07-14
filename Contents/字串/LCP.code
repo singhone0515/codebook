@@ -1,4 +1,4 @@
-int lcp(const string &pa,const string &pb){
+int lcp(const string &pa,const string &pb){//字串先排序
     int i=0;
     while(1<pa.size() && i<pb.size() && pa[i]==pb[i])
         i++;
