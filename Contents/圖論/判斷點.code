@@ -1,13 +1,24 @@
 auto cross(Pt a,Pt b,Pt c){return (b-a)^(c-a);}
 auto dot(Pt a,Pt b,Pt c){return (b-a)*(c-a);}
-bool PtOnSeg(Pt p,Pt lineL,Pt lineR){ //判斷在線段上
-    return sgn(cross(lineL,lineR,p))==0 && 
-           sgn(dot(p,lineL,lineR))<=0;
+struct Line{Pt a,b;};
+bool PtOnSeg(Pt p,Line l){ //判斷在線段上
+    return sgn(cross(l.a,l.b,p))==0 && 
+           sgn(dot(p,l.a,l.b))<=0;
 }
-double PtSegDist(Pt p,Pt lineL,Pt lineR){//求點線距
-    double ans=min(abs(p-lineL),abs(p-lineR));
-    if(sgn(dot(lineL,lineR,p))<0) return ans;
-    if(sgn(dot(lineR,lineL,p))<0) return ans;
+double PtSegDist(Pt p,Line l){//求點線距
+    double ans=min(abs(p-l.a),abs(p-l.b));
+    if(sgn(dot(l.a,l.b,p))<0) return ans;
+    if(sgn(dot(l.b,l.a,p))<0) return ans;
     return min(ans,
-            abs(cross(p,lineL,lineR))/abs(lineL-lineR));
+            abs(cross(p,l.a,l.b))/abs(l.a-l.b));
+}
+int PtSide(Pt p,Line l){
+    return sgn(cross(l.a,l.b,p));
+}
+bool isInter(Line l1,Line l2){ //線段相交
+    if(PtOnSeg(l2.a,l1) || PtOnSeg(l2.b,l1) ||
+       PtOnSeg(l1.a,l2) || PtOnSeg(l1.b,l2)) 
+       return 1;
+    return PtSide(l2.a,l1)*PtSide(l2.b,l1)<0 &&
+           PtSide(l1.a,l2)*PtSide(l1.b,l2)<0;
 }
