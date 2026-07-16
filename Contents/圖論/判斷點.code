@@ -1,13 +1,13 @@
 auto cross(Pt a,Pt b,Pt c){return (b-a)^(c-a);}
 auto dot(Pt a,Pt b,Pt c){return (b-a)*(c-a);}
 bool PtOnSeg(Pt p,Pt lineL,Pt lineR){ //判斷在線段上
-    return sgn(cross(lineL,LineR,p))==0 && 
-           sgn(dot(p,lineL,LineR))<=0;
+    return sgn(cross(lineL,lineR,p))==0 && 
+           sgn(dot(p,lineL,lineR))<=0;
 }
-double PtSegDist(Pt P,Pt lineL,Pt lineR){ //算點到線距離
+double PtSegDist(Pt p,Pt lineL,Pt lineR){ //算點到線距離
     double ans=min(abs(p-lineL),abs(p-lineR));
-    if(sgn(dot(lineL,LineR,p))<0) return ans;
-    if(sgn(dot(lineR,LineL,p))<0) return ans;
+    if(sgn(dot(lineL,lineR,p))<0) return ans;
+    if(sgn(dot(lineR,lineL,p))<0) return ans;
     return min(ans,
-               cross(p,lineL,lineR)/abs(lineL-lineR));
+               abs(cross(p,lineL,lineR))/abs(lineL-lineR));
 }
