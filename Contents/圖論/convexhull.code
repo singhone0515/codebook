@@ -1,27 +1,19 @@
-struct node{
-    int x,y;
-    bool operator<(const node &other) const{
-        return
-        (x<other.x) || (x==other.x && y<other.y);
-    };
-};
 struct ConvexHull{
-    vector<node> vec;
+    vector<Pt> vec;
     int n;
-    void init(vector<node> &v){
+    void init(vector<Pt> &v){
         vec=v;
         n=v.size();
     }
-    int cross(node a,node o,node b){
-        return
-        (a.x-o.x)*(b.y-o.y)-(b.x-o.x)*(a.y-o.y);
+    int cross(Pt a,Pt o,Pt b){
+        return (a-o)^(b-o);
     }
     vector<int> point;
     vector<int> area;
     void build(){
         point=vector<int>(n+1);
         area=vector<int>(n+1);
-        vector<node> up,down;
+        vector<Pt> up,down;
         int upsum=0;
         int downsum=0;
         for(int i=0;i<n;i++){
