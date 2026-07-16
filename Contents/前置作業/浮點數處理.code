@@ -1,3 +1,8 @@
 #define eps 1e-6
 int sgn(double x){return (x>eps)-(x<-eps);}
 // return (-1,0,1)->(負數,0,正數)
+
+/*
+!! 浮點數縮放記得 round() !!
+round(x*10000.0);
+*/
