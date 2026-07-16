@@ -4,10 +4,10 @@ bool PtOnSeg(Pt p,Pt lineL,Pt lineR){ //判斷在線段上
     return sgn(cross(lineL,lineR,p))==0 && 
            sgn(dot(p,lineL,lineR))<=0;
 }
-double PtSegDist(Pt p,Pt lineL,Pt lineR){ //算點到線距離
+double PtSegDist(Pt p,Pt lineL,Pt lineR){//求點線距
     double ans=min(abs(p-lineL),abs(p-lineR));
     if(sgn(dot(lineL,lineR,p))<0) return ans;
     if(sgn(dot(lineR,lineL,p))<0) return ans;
     return min(ans,
-               abs(cross(p,lineL,lineR))/abs(lineL-lineR));
+            abs(cross(p,lineL,lineR))/abs(lineL-lineR));
 }
