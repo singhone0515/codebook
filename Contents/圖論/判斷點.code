@@ -1,5 +1,6 @@
 auto cross(Pt a,Pt b,Pt c){return (b-a)^(c-a);}
 auto dot(Pt a,Pt b,Pt c){return (b-a)*(c-a);}
+double dis(Pt p){return sqrt(p*p);}
 struct Line{Pt a,b;};
 bool PtOnSeg(Pt p,Line l){ //判斷在線段上
     return sgn(cross(l.a,l.b,p))==0 && 
@@ -22,3 +23,20 @@ bool isInter(Line l1,Line l2){ //線段相交
     return PtSide(l2.a,l1)*PtSide(l2.b,l1)<0 &&
            PtSide(l1.a,l2)*PtSide(l1.b,l2)<0;
 }
+int inPoly(Pt p,vector<Pt> &vec){//在多邊形中
+    int n=vec.size();
+    int cnt=0;
+
+    for(int i=0;i<n;i++){
+        Pt a=vec[i];
+        Pt b=vec[(i+1)%n];
+
+        if(PtOnSeg(p,{a,b})) return 1;
+
+        if((sgn(a.y-p.y)==1)^(sgn(b.y-p.y)==1)){
+            cnt+=sgn(cross(a,b,p));
+        }
+    }
+
+    return (cnt==0)?0:2;
+}//(0,1,2)->(外,線,內)
