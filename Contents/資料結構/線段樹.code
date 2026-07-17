@@ -5,23 +5,21 @@ struct Segtree{ // 0-base
     vector<int> *a;
     #define cl(x) (x<<1)+1
     #define cr(x) (x<<1)+2
+    #define mid ((l+r)>>1)
     void init(vector<int> &x){
         n=x.size();
         seg=vector<int> (n*4+5);
         tag=vector<int> (n*4+5);
         a=&x;
     }
-
     void pull(int id){
         seg[id]=seg[cl(id)]+seg[cr(id)];
     }
-
     void build(int l,int r,int id=0){
         if(l==r){
             seg[id]=(*a)[l];
             return;
         }
-        int mid=(l+r)/2;
         build(l,mid,cl(id));
         build(mid+1,r,cr(id));
         pull(id);
@@ -32,7 +30,6 @@ struct Segtree{ // 0-base
             seg[id]=v;
             return;
         }
-        int mid=(l+r)/2;
         if(x<=mid) update(l,mid,x,v,cl(id));
         if(mid<x) update(mid+1,r,x,v,cr(id));
         pull(id);
@@ -55,7 +52,6 @@ struct Segtree{ // 0-base
             tag[id]+=v;
             return;
         }
-        int mid=(l+r)/2;
         if(sl<=mid) update(l,mid,sl,sr,v,cl(id));
         if(mid<sr) update(mid+1,r,sl,sr,v,cr(id));
         push(cl(id),l,mid);
@@ -66,11 +62,8 @@ struct Segtree{ // 0-base
     int qry(int l,int r,int sl,int sr,int id=0){
         push(id,l,r); //區間更新用
         if(sl<=l && r<=sr) return seg[id];
-
-        int mid=(l+r)/2;
         int ans=0;
         if(sl<=mid) ans+=qry(l,mid,sl,sr,cl(id));
         if(mid<sr) ans+=qry(mid+1,r,sl,sr,cr(id));
         return ans;
-    }
-};
+}};
