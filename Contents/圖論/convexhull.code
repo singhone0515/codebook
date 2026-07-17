@@ -17,8 +17,8 @@ struct ConvexHull{
         int downsum=0;
         for(int i=0;i<n;i++){
             while(up.size()>=2 && 
-                cross(up[up.size()-1],
-                    up[up.size()-2],vec[i])<=0){
+                  cross(up[up.size()-1],
+                        up[up.size()-2],vec[i])<=0){
                 upsum-=cross({0,0},up[up.size()-2],
                              up[up.size()-1]);
                 up.pop_back();
@@ -29,8 +29,8 @@ struct ConvexHull{
                              up[up.size()-1]);
 
             while(down.size()>=2 && 
-                cross(down[down.size()-1],
-                      down[down.size()-2],vec[i])>=0){
+                  cross(down[down.size()-1],
+                        down[down.size()-2],vec[i])>=0){
                 downsum-=cross({0,0},down[down.size()-2],
                                down[down.size()-1]);
                 down.pop_back();
