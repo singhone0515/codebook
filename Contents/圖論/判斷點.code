@@ -11,7 +11,7 @@ double PtSegDist(Pt p,Line l){//求點線距
     if(sgn(dot(l.a,l.b,p))<0) return ans;
     if(sgn(dot(l.b,l.a,p))<0) return ans;
     return min(ans,
-            abs(cross(p,l.a,l.b))/abs(l.a-l.b));
+               abs(cross(p,l.a,l.b))/abs(l.a-l.b));
 }
 int PtSide(Pt p,Line l){
     return sgn(cross(l.a,l.b,p));
