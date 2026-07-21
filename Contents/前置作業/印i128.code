@@ -1,0 +1,17 @@
+void print128(__int128_t x){
+    if(x==0){
+        cout<<0;
+        return;
+    }
+    if(x<0){
+        cout<<'-';
+        x=-x;
+    }
+    string s;
+    while(x){
+        s+=char('0'+x%10);
+        x/=10;
+    }
+    reverse(s.begin(),s.end());
+    cout<<s;
+}
