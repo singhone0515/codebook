@@ -14,13 +14,11 @@ struct SegTreeBeat{
         seg[id].mx=seg[cl(id)].mx;
         seg[id].smx=max(seg[cl(id)].smx,seg[cr(id)].smx);
         seg[id].cntmx=seg[cl(id)].cntmx+seg[cr(id)].cntmx;
-    }
-    else if(seg[cl(id)].mx>seg[cr(id)].mx){
+    }else if(seg[cl(id)].mx>seg[cr(id)].mx){
         seg[id].mx=seg[cl(id)].mx;
         seg[id].smx=max(seg[cl(id)].smx,seg[cr(id)].mx);
         seg[id].cntmx=seg[cl(id)].cntmx;
-    }
-    else{
+    }else{
         seg[id].mx=seg[cr(id)].mx;
         seg[id].smx=max(seg[cr(id)].smx,seg[cl(id)].mx);
         seg[id].cntmx=seg[cr(id)].cntmx;

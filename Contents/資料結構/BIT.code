@@ -7,17 +7,14 @@ struct Binary_Indexed_Tree{//一定要用 1-base
     }
     int lowbit(int x){return x&-x;}
     void update(int x,int v){
-        for(;x<n;x+=lowbit(x)){
-            bit[x]+=v;
-    }}
+        for(;x<n;x+=lowbit(x)) bit[x]+=v;
+    }
     void range_update(int l,int r,int v){
         update(l,v);
         update(r+1,-v);
     }
     int qry(int x){
         int ans=0;
-        for(;x>0;x-=lowbit(x)){
-            ans+=bit[x];
-        }
+        for(;x>0;x-=lowbit(x)) ans+=bit[x];
         return ans;
 }};
