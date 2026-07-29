@@ -1,0 +1,12 @@
+struct node{int u,v,id;};
+vector<node> edge;
+for(int i=0;i<m;i++){
+    cin>>u>>v>>w;
+    flow.add_edge(u,v,w);
+    edge.push_back({u,v,i});
+}
+flow.flow();
+for(auto &[u,v,id]:edge){
+    if(flow.level[u]!=-1 && flow.level[v]==-1){
+        cout<<id<<" ";
+}}
