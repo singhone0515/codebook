@@ -1,6 +1,6 @@
 struct spfa{
     struct edge{int v,w;};
-    int n;
+    int n,source;
     vector<vector<edge>> E;
     vector<int> dis,cnt,inq,pre;
     void init(int _n){
@@ -11,6 +11,7 @@ struct spfa{
         E[u].push_back({v,w});
     }
     bool dist(int s){
+        source=s;
         dis.assign(n,inf);
         cnt.assign(n,0);
         inq.assign(n,0);
@@ -32,11 +33,11 @@ struct spfa{
         }}}
         return 1;
     }
-    vector<int> get_path(int s,int t){
+    vector<int> get_path(int t){
         if(dis[t]==inf) return {};
         vector<int> res;
         for(int i=t;i!=-1;i=pre[i]) res.push_back(i);
         reverse(res.begin(),res.end());
-        if(res[0]!=s) return {};
+        if(res[0]!=source) return {};
         return res;
 }};
