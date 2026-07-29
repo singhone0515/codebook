@@ -1,0 +1,50 @@
+struct Dinic{
+    struct edge{int v,f,re;};
+    int n,s,t;
+    vector<vector<edge>> E;
+    vector<int> level;
+    void init(int _n,int _s,int _t){
+        n=_n;s=_s;t=_t;
+        E.assign(n,{});
+        level.assign(n,-1);
+    }
+    void add_edge(int u,int v,int w){
+        int Su=E[u].size();
+        int Sv=E[v].size();
+        E[u].push_back({v,w,Sv});
+        E[v].push_back({u,0,Su});
+    }
+    int bfs(){
+        level.assign(n,-1);
+        queue<int> q;
+        level[s]=0;
+        q.push(s);
+        while(!q.empty()){
+            int u=q.front();q.pop();
+            for(auto [v,f,re]:E[u]){
+                if(f>0 && level[v]==-1){
+                    level[v]=level[u]+1;
+                    q.push(v);
+        }}}
+        return level[t]!=-1;
+    }
+    int dfs(int u,int nf){
+        if(u==t) return nf;
+        int res=0;
+        for(auto &[v,f,re]:E[u]){
+            if(f>0 && level[v]==level[u]+1){
+                int tf=dfs(v,min(nf,f));
+                res+=tf;
+                nf-=tf;
+                f-=tf;
+                E[v][re].f+=tf;
+                if(nf<=0) return res;
+        }}
+        if(!res) level[u]=-1;
+        return res;
+    }
+    #define inf INT_MAX
+    int flow(int res=0){
+        while(bfs()) res+=dfs(s,inf);
+        return res;
+}};
