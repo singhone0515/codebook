@@ -1,0 +1,3 @@
+int mul(int x,int y,int mod){
+    return (__int128)x*y%mod;
+}
