@@ -31,20 +31,23 @@ signed main(){
         available[tmp].insert({0,i});
     }
 
-    priority_queue<carstatus,vector<carstatus>,greater<carstatus>> busy;
+    priority_queue<carstatus,vector<carstatus>,
+        greater<carstatus>> busy;
     int t,f,e;
     while(m--){
         cin>>t>>f>>e;
 
         while(!busy.empty() && busy.top().lasttime<=t){
-            available[busy.top().dis].insert({busy.top().lasttime,busy.top().id});
+            available[busy.top().dis]
+                .insert({busy.top().lasttime,busy.top().id});
             busy.pop();
         }
 
         if(available.empty()){
             int near=busy.top().lasttime;
             while(!busy.empty() && busy.top().lasttime==near){
-                available[busy.top().dis].insert({busy.top().lasttime,busy.top().id});
+                available[busy.top().dis]
+                    .insert({busy.top().lasttime,busy.top().id});
                 busy.pop();
             }
         }
