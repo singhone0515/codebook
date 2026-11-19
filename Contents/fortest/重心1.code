@@ -1,0 +1,30 @@
+	int sz[MXN];
+int dfs(int x, int father) {
+    sz[x] = 1;
+    for(int i : edge[x]){
+        if(i != father)
+            sz[x] += dfs(i, x);
+    }
+    return sz[x];
+}
+int cen_sz = inf, cen = -1;
+void find_cen(int x, int father){
+    // 找孩子 sz
+    int mx_sz = 0;
+    for(int i : edge[x]){
+        if(i == father) continue;
+        mx_sz = max(mx_sz, sz[i]);
+    }
+    // 找上方的樹 sz
+    mx_sz = max(mx_sz, n - sz[x]);
+    // 紀錄答案
+    if(cen_sz > mx_sz){
+        cen_sz = mx_sz;
+        cen = x;
+    }
+    //算完就往下遞迴算
+    for(int i : edge[x]){
+        if(i == father) continue;
+        find_cen(i, x);
+    }
+}

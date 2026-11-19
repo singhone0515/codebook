@@ -1,0 +1,12 @@
+int sz[MXN];
+int dfs(int x, int father) {
+    sz[x] = 1;
+    for(int i : edge[x]){
+        if(i != father){
+            // 先 dfs 算子樹的結果, 算出後再加入 sz[x]
+            sz[x] += dfs(i, x);
+            // 此時 i 已經是黑點 (拜訪完所有後代)
+        }
+    }
+    return sz[x];
+}

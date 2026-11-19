@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+
+signed main(){
+    ios::sync_with_stdio(0);cin.tie(0);
+    int n;
+    cin>>n;
+    while(n--){
+        int tmp,k;
+        cin>>tmp>>k;
+
+        if((1LL<<k)-1>tmp){
+            cout<<-1<<"\n";
+            continue;
+        }
+
+        for(int i=0;i<60;i++){
+            if(__builtin_popcountll(tmp)>=k) break;
+            if(tmp&(1LL<<i)){
+                tmp^=(1LL<<i);
+                tmp|=(1LL<<i)-1;
+            }
+        }
+        while(__builtin_popcountll(tmp)>k){
+            tmp&=(tmp-1);
+        }
+
+        cout<<tmp<<"\n";
+    }
+    return 0;
+}

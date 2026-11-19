@@ -1,0 +1,15 @@
+int md, mx;
+void dfs(int x, int father, int d = 0){
+    if(d > md) md = d, mx = x;
+    for(int i : edge[x]){
+        if(i != father)
+            dfs(i, x, d + 1);
+    }
+}
+int find_diameter(){
+    md = -1;
+    dfs(0, 0);
+    md = -1;
+    dfs(mx, mx);
+    return md;
+}

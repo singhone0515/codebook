@@ -1,0 +1,10 @@
+	int d[MXN];
+void dfs(int x, int father){
+    for(int i : edge[x]){
+        if(i != father){
+            // 在 i 還是灰點時就處理
+            d[i] = d[x] + 1;
+            dfs(i, x);
+        }
+    }
+}

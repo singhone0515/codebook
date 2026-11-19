@@ -1,0 +1,16 @@
+int dfs(int u, int pre){ // 這個先預處理
+    sz[u] = 1;
+    for(int v : g[u]){
+        if(v == pre) continue;
+        sz[u] += dfs(v, u);
+    }
+    return sz[u];
+}
+int get_cent(int u, int pre){
+    for(int v : g[u]){
+        if(v != pre && sz[v] > n / 2) // 這條件代表重心在 v 的子樹
+            return get_cent(v, u);
+    }
+    return u; // 每個子樹都 <= (n / 2)，則符合重心定義
+}
+dfs(1, 0); ans = get_cent(1, 0);

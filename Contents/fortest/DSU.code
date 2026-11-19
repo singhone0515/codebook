@@ -1,0 +1,16 @@
+struct uf{
+    vector<int> father;
+    void init(int n){
+        father.resize(n);
+        iota(father.begin(),father.end(),0);
+    }
+    int find(int x){
+        if(father[x]==x) return x;
+        return father[x]=find(father[x]);
+    }
+    void build(int u,int v){
+        u=find(u);
+        v=find(v);
+        if(u!=v) father[u]=v;
+    }
+}dsu;

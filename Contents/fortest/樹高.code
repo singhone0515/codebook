@@ -1,0 +1,9 @@
+	void dfs(int x, int father){
+    h[x] = 0;
+    for(int i : edge[x]){
+        if(i != father){
+            dfs(i, x);
+            h[x] = max(h[x], h[i] + 1);
+        }
+    }
+}
